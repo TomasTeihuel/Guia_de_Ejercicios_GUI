@@ -1,24 +1,36 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
+from PyQt6.QtWidgets import QMainWindow, QPushButton, QHBoxLayout, QVBoxLayout, QWidget, QLabel, QApplication
 import random
 
-class Ventana(QMainWindow):
+
+class Window(QMainWindow):
+
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Generador de números aleatorios')
-        self.setGeometry(100, 100, 300, 200)
-        self.boton = QPushButton('Generar número aleatorio', self)
-        self.boton.setGeometry(50, 50, 200, 50)
-        self.boton.clicked.connect(self.generar_numero_aleatorio)
-        self.etiqueta = QLabel(self)
-        self.etiqueta.setGeometry(50, 110, 200, 50)
 
-    def generar_numero_aleatorio(self):
-        numero_aleatorio = random.randint(1, 100)
-        self.etiqueta.setText(f'Número aleatorio: {numero_aleatorio}')
+        self.setWindowTitle("Generador de números aleatorios")
 
-if __name__ == '__main__':
+        self.my_layout = QVBoxLayout()
+        self.txt = QLabel("[]")
+
+        self.button = QPushButton("Generar número aleatorio")
+        self.button.clicked.connect(self.generate)
+        self.my_layout.addWidget(self.txt)
+        self.my_layout.addWidget(self.button)
+
+        window = QWidget()
+        window.setLayout(self.my_layout)
+        self.setCentralWidget(window)
+
+    def generate(self):
+        random_number = random.randint(1, 100)
+
+        self.txt.setText(f"[{random_number}]")
+
+
+if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ventana = Ventana()
-    ventana.show()
-    sys.exit(app.exec())
+    window = Window()
+    window.show()  # Obligatorio (dentro del init o fuera)
+
+    app.exec()
