@@ -6,7 +6,6 @@ class Ventana(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        # Definir los widgets
         self.lbl = QLabel('Ingrese una fruta:')
         self.txtFruta = QLineEdit()
         self.btnAgregar = QPushButton('Agregar')
@@ -14,7 +13,6 @@ class Ventana(QMainWindow):
         self.lblListado = QLabel('Frutas agregadas:')
         self.txtListado = QLabel()
 
-        # Definir el layout
         vbox = QVBoxLayout()
         vbox.addWidget(self.lbl)
         vbox.addWidget(self.txtFruta)
@@ -25,7 +23,6 @@ class Ventana(QMainWindow):
         vbox.addWidget(self.lblListado)
         vbox.addWidget(self.txtListado)
 
-        # Definir el widget central
         widget = QWidget()
         widget.setLayout(vbox)
         self.setCentralWidget(widget)
